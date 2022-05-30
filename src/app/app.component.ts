@@ -36,7 +36,6 @@ export class ArtworkAppComponent implements OnInit{
 
     getCollections(perPage: number, page: number){
         this.apiService.getCollections(perPage,page).subscribe((data: any) => {
-            console.log(data);
             this.collections = data;
             this.imageUrl = data.config.iiif_url;
             this.count = data.pagination.total_pages;
@@ -96,15 +95,13 @@ export class ArtworkAppComponent implements OnInit{
             this.collections = data;
             this.imageUrl = data.config.iiif_url;
             this.count = data.pagination.total_pages;
-            this.bindMultiOptions();
+            this.isLoading = false;
             this.multiSelect = [];
         })
     }
 
     bindMultiOptions(){
-        console.log("abc" + this.collections)
         for(var val in this.collections.data){
-            console.log("abcd" + this.collections.data[val])
             if(this.collections.data[val].style_title){
                 var styleTitles = this.collections.data[val].style_title + "(" + (this.collections.data[val].style_titles as any[]).length || 0 + "";
                 styleTitles = styleTitles + ")";
@@ -112,6 +109,7 @@ export class ArtworkAppComponent implements OnInit{
             }
             this.sortOptions.push(this.collections.data[val].artist_title)
         }
+        this.sortOptions = [...new Set(this.sortOptions)];
     }
 
     getMultiCollection($evt: Event){
