@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/cdk/overlay-prebuilt.css";
+@import "@angular/cdk/a11y-prebuilt.css";
+@import '@aposin/ng-aquila/css/utilities.css';
+
+$color-tiny: #dbd3d8;
+$color-small: #fac748;
+$color-medium: #87d68d;
+$color-large: #27abd6;
+$color-xlarge: #e18335;
+$color-2xlarge: #db4c40;
+$color-3xlarge: #8d6a9f;
+$dotted-border-color: #e5e7e6;
+
+.docs-grid-text-tiny {
+    font-weight: 700;
+    color: $color-tiny;
+}
+
+.docs-grid-text-small {
+    font-weight: 700;
+    color: $color-small;
+}
+
+.docs-grid-text-medium {
+    font-weight: 700;
+    color: $color-medium;
+}
+
+.docs-grid-text-large {
+    font-weight: 700;
+    color: $color-large;
+}
+
+.docs-grid-text-xlarge {
+    font-weight: 700;
+    color: $color-xlarge;
+}
+
+.docs-grid-text-2xlarge {
+    font-weight: 700;
+    color: $color-2xlarge;
+}
+
+.docs-grid-text-3xlarge {
+    font-weight: 700;
+    color: $color-3xlarge;
+}

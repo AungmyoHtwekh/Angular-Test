@@ -1,0 +1,73 @@
+<div nxLayout="grid">
+    <div nxRow class="nx-form-item">
+      <div nxCol="12">
+        <h2 nxHeadline="subsection-medium" class="nx-font-weight-bold nx-text-center">ART COLLECTION</h2>
+      </div>
+      <div nxCol="12, 12, 6" class="nx-form-filter">
+        <div nxRow>
+          <div nxCol="12, 12, 6">
+            <nx-formfield nxLabel="Filter :">
+              <nx-multi-select ngModel (ngModelChange)="getMultiCollection($event)"
+                  filter
+                  [(ngModel)]="multiSelect"
+                  [options]="options"
+              ></nx-multi-select>
+            </nx-formfield>
+          </div>
+          <div nxCol="12, 12, 6">
+            <nx-formfield nxLabel="Sort By:">
+              <nx-dropdown [nxValueFormatter]="toText" (selectionChange)="getSortedCollection()" [(ngModel)]="selectSortOptions">
+                <nx-dropdown-item
+                    *ngFor="let option of sortOptions"
+                    [nxValue]="option"
+                ></nx-dropdown-item>
+            </nx-dropdown>
+            </nx-formfield>
+          </div>
+        </div>
+
+        <div nxRow *ngIf="isLoading">
+          <div nxCol="12">
+              <nx-spinner nxSize="large" style="margin:auto;"></nx-spinner>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div nxLayout="grid">
+      <div nxRow *ngIf="collections?.data">
+        <div nxCol="12,12,6,3" class="docs-grid-colored-col card-style" *ngFor="let collection of collections.data">
+          <div>
+                <img
+                    [src]="getImageUrl(collection.image_id)"
+                    alt="https://upload.wikimedia.org/wikipedia/commons/3/32/Art_Institute_of_Chicago_logo.svg"
+                    class="card-img-style"
+                />
+            <p nxHeadline="subsection-xsmall" class="nx-margin-bottom-m">{{collection.artwork_type_title}}</p>
+            <p nxCopytext="normal">{{collection.artist_title}}</p>
+            <p nxCopytext="normal">{{getLocation(collection)}}</p>
+            <p nxCopytext="normal">{{collection.material_titles}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nxRow>
+      <div nxCol="12">
+        <div class="nx-pagination-item">
+          <nx-pagination
+            [nxCount]="count"
+            [nxPage]="page"
+            [nxPerPage]="perPage"
+            nxType="advanced"
+            (nxGoPrev)="prevPage()"
+            (nxGoNext)="nextPage()"
+            (nxGoPage)="goToPage($event)">
+            </nx-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spinner-style">
+
+  </div>
